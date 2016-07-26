@@ -1,0 +1,34 @@
+path(A,B) :-   % two nodes are connected, if
+  walk(A,B,[]) % - if we can walk from one to the other,
+  .            % first seeding the visited list with the empty list
+
+walk(A,B,V) :-       % we can walk from A to B...
+  (footpath(A,X)footmotor(A,X),      % - if A is connected to X, and
+  not(member(X,V)) , % - we haven't yet visited X, and
+  (                  % - either
+    B = X            %   - X is the desired destination
+  ;                  %   OR
+    walk(X,B,[A|V])  %   - we can get to it from X
+  )                  %
+  .                  
+  
+footpath(56,57).
+motorway(56,54). %  motor way
+footpath(56,58).
+footpath(57,56).%   footway
+footpath(57,59).
+footpath(57,58).
+footmotor(57,62).
+footmotor(57,54).
+footmotor(57,53).
+footmotor(57,52).
+footmotor(57,59).%   mixed way
+footmotor(57,68).
+footmotor(57,83).
+footmotor(57,60).
+footpath(58,56).
+footpath(58,57).
+footpath(58,59).
+footpath(59,58).
+footpath(59,57).
+footpath(59,60).
